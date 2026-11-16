@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/niri-help-$(id -u).lock"
+flock -n 9 || exit 0
+exec yad --class=niri-help --text-info --title="Niri 快捷键与使用提示" \
+ --filename="$HOME/.config/niri/快捷键与提示.txt" \
+ --fontname="Noto Sans CJK SC 11" --width=980 --height=800 \
+ --wrap --margins=18 --center --button="关闭:0" --escape-ok

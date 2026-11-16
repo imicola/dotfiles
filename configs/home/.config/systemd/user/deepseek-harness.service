@@ -1,0 +1,12 @@
+[Unit]
+Description=DeepSeek Harness local Web UI
+[Service]
+Type=simple
+WorkingDirectory=%h/Documents/Codex/DeepSeek-Workspace
+Environment="PATH=%h/.local/bin:%h/go/bin:/usr/local/bin:/usr/bin"
+Environment="HTTP_PROXY=http://127.0.0.1:7897" "HTTPS_PROXY=http://127.0.0.1:7897" "ALL_PROXY=http://127.0.0.1:7897"
+Environment="http_proxy=http://127.0.0.1:7897" "https_proxy=http://127.0.0.1:7897" "all_proxy=http://127.0.0.1:7897"
+Environment="NO_PROXY=localhost,127.0.0.1,::1" "no_proxy=localhost,127.0.0.1,::1"
+ExecStart=%h/.local/bin/dsh web --host 127.0.0.1 --port 3080 --no-open
+TimeoutStopSec=15
+KillMode=control-group

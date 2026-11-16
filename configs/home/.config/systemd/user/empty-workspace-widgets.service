@@ -1,0 +1,12 @@
+[Unit]
+Description=Show desktop widgets only on empty Niri workspaces
+PartOf=noctalia.service
+After=noctalia.service
+
+[Service]
+ExecStart=/usr/bin/python3 /home/imicola/.local/bin/empty-workspace-widgets.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=noctalia.service

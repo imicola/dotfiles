@@ -1,0 +1,86 @@
+# 左侧状态栏与贴边控制中心。布局参考 LanRhyme/dotfiles 的桌面截图。
+[bar.default]
+position = "left"
+thickness = 46
+margin_edge = 0
+margin_ends = 0
+margin_opposite_edge = 0
+padding = 12
+widget_spacing = 11
+scale = 1.25
+font_scale = 0.90
+background_opacity = 0.90
+compositor_blur = true
+border_width = 0
+shadow = false
+radius = 14
+radius_top_left = 0
+radius_bottom_left = 0
+radius_top_right = 14
+radius_bottom_right = 14
+concave_edge_corners = true
+reserve_space = true
+capsule_group = []
+start = ["launcher", "clipboard", "wallpaper", "media", "clock"]
+center = ["workspaces"]
+end = ["privacy", "tray", "notifications", "network", "volume", "brightness", "battery", "control-center", "safe-session"]
+
+[widget.launcher]
+custom_image = ""
+glyph = "search"
+color = "primary"
+
+[widget.control-center]
+glyph = "adjustments-horizontal"
+color = "primary"
+
+[widget.clock]
+vertical_format = "{:%H}\n{:%M}"
+tooltip_format = "{:%m月%d日 %A %H:%M}"
+color = "primary"
+font_weight = 600
+
+[widget.workspaces]
+style = "regular"
+active_pill_size = 1.55
+inactive_pill_size = 0.92
+pill_scale = 0.78
+occupied_color = "secondary"
+empty_color = "surface_container_highest"
+
+[widget.media]
+capsule = false
+art_size = 19
+
+[widget.volume]
+show_label = false
+
+[widget.battery]
+show_label = false
+
+[shell.panel]
+control_center_placement = "attached"
+control_center_position = "auto"
+
+[control_center]
+width = 560
+
+[dock]
+icon_size = 38
+background_opacity = 0.84
+margin_edge = 12
+main_axis_padding = 12
+cross_axis_padding = 7
+magnification_scale = 1.18
+
+[desktop_widgets]
+enabled = false
+
+[notification]
+offset_y = 16
+
+[osd]
+offset_y = 20
+
+[widget.privacy]
+hide_inactive = true

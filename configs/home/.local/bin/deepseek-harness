@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import subprocess,re,time,urllib.request,http.cookiejar
+subprocess.run(['systemctl','--user','start','deepseek-harness.service'],check=True)
+inv=subprocess.check_output(['systemctl','--user','show','--value','-p','InvocationID','deepseek-harness.service'],text=True).strip()
+opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+for attempt in range(60):
+ text=subprocess.check_output(['journalctl','--user','_SYSTEMD_INVOCATION_ID='+inv,'-o','cat','--no-pager'],text=True)
+ urls=re.findall(r'http://127\.0\.0\.1:3080/\?token=[A-Za-z0-9_-]+',text)
+ if urls:
+  try:
+   with opener.open(urls[-1],timeout=2) as r:
+    if r.status==200:
+     subprocess.Popen(['xdg-open',urls[-1]],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+     raise SystemExit(0)
+  except (OSError,urllib.error.URLError):pass
+ time.sleep(1)
+subprocess.run(['notify-send','DeepSeek Harness','启动未完成，请检查用户服务日志。'])
+raise SystemExit(1)

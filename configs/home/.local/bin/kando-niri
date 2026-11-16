@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Kando's Niri launcher, adapted from LanRhyme/dotfiles.
+set -euo pipefail
+app="${XDG_DATA_HOME:-$HOME/.local/share}/kando/kando"
+exec "$app" --ozone-platform=wayland "$@"

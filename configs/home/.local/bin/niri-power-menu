@@ -1,0 +1,16 @@
+#!/bin/sh
+choice=$(printf '锁屏
+注销 Niri
+重启
+关机
+' | fuzzel --dmenu --prompt='会话操作 ❯ ' --lines=4) || exit 0
+case "$choice" in
+ 锁屏) exec /home/imicola/.local/bin/niri-lock ;;
+ '注销 Niri') exec niri msg action quit ;;
+ 重启|关机)
+  answer=$(printf '取消
+确认%s
+' "$choice" | fuzzel --dmenu --prompt='保存工作后再继续 ❯ ' --lines=2) || exit 0
+  [ "$answer" = "确认$choice" ] || exit 0
+  if [ "$choice" = 重启 ]; then exec systemctl reboot; else exec systemctl poweroff; fi ;;
+esac

@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Generate a rounded app icon, inspired by LanRhyme/dotfiles' colloid-gen."""
+import argparse
+import colorsys
+import os
+from pathlib import Path
+import re
+import subprocess
+from tempfile import TemporaryDirectory
+
+
+def magick(*args):
+    return subprocess.run(
+        ["magick", *map(str, args)], check=True, stdout=subprocess.PIPE
+    ).stdout
+
+
+def background_color(source):
+    red, green, blue = magick(source, "-scale", "1x1!", "-depth", "8", "rgb:-")
+    hue, lightness, saturation = colorsys.rgb_to_hls(red / 255, green / 255, blue / 255)
+    lightness = 0.18 if lightness > 0.45 else 0.85
+    rgb = colorsys.hls_to_rgb(hue, lightness, saturation * 0.25)
+    return "#" + "".join(f"{round(channel * 255):02x}" for channel in rgb)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="将图片生成带圆角的 512×512 PNG 图标。")
+    parser.add_argument("image", type=Path)
+    parser.add_argument("output", type=Path)
+    style = parser.add_mutually_exclusive_group()
+    style.add_argument("--crop", action="store_true", help="让图片铺满整个图标")
+    style.add_argument("--bg", help="指定标志背后的底色，例如 '#24273a'")
+    args = parser.parse_args()
+    if args.bg and not re.fullmatch(r"#[0-9a-fA-F]{6}", args.bg):
+        parser.error("--bg 需要六位十六进制颜色")
+    if not args.image.is_file():
+        parser.error("找不到原图")
+    if args.output.suffix.lower() != ".png" or not args.output.parent.is_dir():
+        parser.error("请在已存在的目录中指定 .png 输出文件")
+    if args.output.exists() or args.output.is_symlink():
+        parser.error("输出文件已存在")
+
+    with TemporaryDirectory(prefix=".colloid-", dir=args.output.parent.resolve()) as name:
+        temporary = Path(name)
+        source = temporary / "source.png"
+        square = temporary / "square.png"
+        output = temporary / "result.png"
+        magick("-background", "none", f"{args.image.resolve()}[0]", "-auto-orient",
+               "-resize", "1024x1024>", source)
+        opaque = magick(source, "-format", "%[opaque]", "info:").strip() == b"True"
+        if args.crop or (opaque and not args.bg):
+            magick(source, "-resize", "512x512^", "-gravity", "center",
+                   "-extent", "512x512", square)
+        else:
+            color = args.bg or background_color(source)
+            magick("-size", "512x512", f"xc:{color}", "(", source, "-resize", "368x368",
+                   ")", "-gravity", "center", "-compose", "Over", "-composite", square)
+        magick(square, "-alpha", "set", "(", "-size", "512x512", "xc:none",
+               "-fill", "white", "-draw", "roundrectangle 0,0 511,511 128,128", ")",
+               "-compose", "DstIn", "-composite", output)
+        os.link(output, args.output)
+    print(args.output)
+
+
+if __name__ == "__main__":
+    main()

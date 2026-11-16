@@ -1,0 +1,229 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Fastfetch Config — Tree-style with color-coded sections
+  // ═══════════════════════════════════════════════════════════════
+  //
+  //  Color scheme:
+  //    {#35} magenta  — Section headers
+  //    {#33} yellow   — System section
+  //    {#32} green    — Hardware section
+  //    {#34} blue     — Software section
+  //    {#36} cyan     — Network section
+  //    {#31} red      — Extras section
+  //
+  //  To switch logos, change the "type" field:
+  //    "small"  → Small Arch ASCII logo (current, works everywhere)
+  //    "chafa"  → Custom image as colored ASCII art (needs source/width/height)
+  //    "kitty"  → Kitty image protocol (Kitty terminal only)
+  //    "sixel"  → Sixel graphics (WezTerm, etc.)
+  //    "arch"   → Full-size Arch ASCII logo
+  //
+  //  To add more modules, follow the tree pattern:
+  //    First item:  "key": "╭─ icon"
+  //    Middle item: "key": "├─ icon"
+  //    Last item:   "key": "╰─ icon"
+  //
+  //  Available modules: fastfetch --list-modules
+  // ═══════════════════════════════════════════════════════════════
+
+
+  // ── Logo ───────────────────────────────────────────────
+  // Option A: Small Arch ASCII logo (default, universal)
+  "logo": {
+    "type": "auto",
+//    "source": "~/.config/fastfetch/a.txt",
+//    "source": "~/.config/fastfetch/b.txt",
+    "source": "~/.config/fastfetch/c.txt",
+//    "source": "~/.config/fastfetch/nona_cut.png",
+//    "width": 35,
+//    "height": 16,
+
+    "padding": {
+      "top": 1,
+      "left": 1,
+      "right": 3
+    }
+  },
+
+  // Option B: Custom image via chafa (uncomment to use, comment Option A)
+  // "logo": {
+  //   "type": "auto",
+  //   "source": "~/.config/fastfetch/b.txt",
+  //   "width": 28,
+  //   "height": 18,
+  //   "padding": { "top": 1, "left": 1, "right": 2 }
+  // },
+
+
+  // ── Display ────────────────────────────────────────────
+  "display": {
+    "separator": "  ",
+    "constants": [
+      "──────────────────────────────"  // {$1} horizontal rule
+    ],
+    "percent": {
+      "type": 3,         // 1=number, 2=bar, 3=both, 9=colored number
+      "width": 0         // 0 disables fixed-width padding (no leading spaces)
+    },
+    "bar": {
+      "char": {
+        "elapsed": "■",
+        "total": "□"
+      }
+    }
+  },
+
+
+  // ── Modules ────────────────────────────────────────────
+  "modules": [
+    // ── Title ──────────────────────────────────────────
+    {
+      "type": "title",
+      "color": {
+        "user": "35",
+        "at": "90",
+        "host": "35"
+      }
+    },
+    {
+      "type": "separator",
+      "outputColor": "90"
+    },
+
+
+    // ── System ─────────────────────────────────────────
+    {
+      "type": "custom",
+      "format": "{#35} {#1}System{#}"
+    },
+    {
+      "type": "os",
+      "key": "╭─ {icon}",
+      "keyColor": "33"
+    },
+    {
+      "type": "host",
+      "key": "├─ 󰌢",
+      "keyColor": "33"
+    },
+    {
+      "type": "kernel",
+      "key": "├─ ",
+      "keyColor": "33"
+    },
+    {
+      "type": "uptime",
+      "key": "├─ 󰅐",
+      "keyColor": "33"
+    },
+    {
+      "type": "packages",
+      "key": "╰─ 󰏖",
+      "keyColor": "33"
+    },
+
+
+    // ── Hardware ───────────────────────────────────────
+    {
+      "type": "custom",
+      "format": "{#32} {#1}Hardware{#}"
+    },
+    {
+      "type": "cpu",
+      "key": "╭─ 󰻠",
+      "keyColor": "32",
+      "format": "{name} ({cores-logical})"
+    },
+    {
+      "type": "gpu",
+      "key": "├─ 󰍛",
+      "keyColor": "32"
+    },
+    {
+      "type": "memory",
+      "key": "├─ 󰑭",
+      "keyColor": "32"
+    },
+    {
+      "type": "swap",
+      "key": "├─ 󰓡",
+      "keyColor": "32"
+    },
+    {
+      "type": "disk",
+      "key": "╰─ ",
+      "keyColor": "32",
+      "folders": "/"
+    },
+
+
+    // ── Software ───────────────────────────────────────
+    {
+      "type": "custom",
+      "format": "{#34}󰘳 {#1}Software{#}"
+    },
+    {
+      "type": "wm",
+      "key": "╭─ ",
+      "keyColor": "34"
+    },
+    {
+      "type": "shell",
+      "key": "├─ ",
+      "keyColor": "34"
+    },
+    {
+      "type": "terminal",
+      "key": "╰─ ",
+      "keyColor": "34"
+    },
+
+
+    // ── Network ────────────────────────────────────────
+    {
+      "type": "custom",
+      "format": "{#36}󰛳 {#1}Network{#}"
+    },
+    {
+      "type": "localip",
+      "key": "╰─ 󰩟",
+      "keyColor": "36",
+      "compact": true,
+      "format": "{ipv4} ({ifname})"
+    },
+
+
+    // ── Extras ─────────────────────────────────────────
+    {
+      "type": "custom",
+      "format": "{#31} {#1}Extras{#}"
+    },
+    {
+      "type": "battery",
+      "key": "╭─ 󰁹",
+      "keyColor": "31"
+    },
+    {
+      "type": "display",
+      "key": "├─ 󰍹",
+      "keyColor": "31"
+    },
+    {
+      "type": "locale",
+      "key": "╰─ 󰒍",
+      "keyColor": "31"
+    },
+
+
+    // ── Bottom ─────────────────────────────────────────
+    "break",
+    {
+      "type": "colors",
+      "paddingLeft": 2,
+      "symbol": "circle"
+    }
+  ]
+}

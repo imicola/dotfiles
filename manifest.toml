@@ -1,0 +1,150 @@
+# 唯一事实源:部署声明。改配置先改这里,再 collect / deploy。
+version = 1
+
+[meta]
+machine = "imicola-fmbp"      # 部署目标机;不符则拒绝执行
+os = "endeavouros"
+
+# 每条 = 一个符号链接:path 相对 $HOME,源自动取 configs/home/<path>
+# 源是目录 ⇒ 整目录链接;是文件 ⇒ 单文件链接
+[[link]]
+path = ".config/niri"
+[[link]]
+path = ".config/noctalia"
+[[link]]
+path = ".config/kitty"
+[[link]]
+path = ".config/fastfetch"
+[[link]]
+path = ".config/btop"
+[[link]]
+path = ".config/yazi"
+[[link]]
+path = ".config/nvim"
+[[link]]
+path = ".config/honor"
+[[link]]
+path = ".config/environment.d"
+[[link]]
+path = ".local/share/hydrangea-night"
+[[link]]
+path = ".zshrc"
+[[link]]
+path = ".gitconfig"
+[[link]]
+path = ".config/fuzzel/fuzzel.ini"
+[[link]]
+path = ".config/mako/config"
+[[link]]
+path = ".config/xsettingsd/xsettingsd.conf"
+[[link]]
+path = ".config/gtk-3.0/settings.ini"
+[[link]]
+path = ".config/gtk-4.0/settings.ini"
+[[link]]
+path = ".config/kdeglobals"
+[[link]]
+path = ".config/lazygit/config.yml"
+[[link]]
+path = ".config/xdg-desktop-portal/niri-portals.conf"
+[[link]]
+path = ".config/xdg-terminals.list"
+[[link]]
+path = ".config/user-dirs.dirs"
+[[link]]
+path = ".config/mimeapps.list"
+[[link]]
+path = ".config/fcitx5/profile"
+[[link]]
+path = ".config/fcitx5/conf/classicui.conf"
+[[link]]
+path = ".config/kando/config.json"
+[[link]]
+path = ".config/kando/menus.json"
+[[link]]
+path = ".local/share/fcitx5/rime/default.custom.yaml"
+[[link]]
+path = ".local/share/fcitx5/rime/rime_frost.custom.yaml"
+[[link]]
+path = ".local/share/fcitx5/rime/custom_phrase.txt"
+[[link]]
+path = ".config/systemd/user/noctalia.service"
+[[link]]
+path = ".config/systemd/user/deepseek-harness.service"
+[[link]]
+path = ".config/systemd/user/empty-workspace-widgets.service"
+[[link]]
+path = ".config/systemd/user/honor-sleep-test-guard.service"
+[[link]]
+path = ".config/systemd/user/sshx-agent.service"
+[[link]]
+path = ".config/autostart/FlClash.desktop"
+[[link]]
+path = ".config/autostart/blueman.desktop"
+[[link]]
+path = ".config/autostart/firewall-applet.desktop"
+[[link]]
+path = ".local/bin/chatgpt-proxy"
+[[link]]
+path = ".local/bin/chatgpt"        # git 记录相对符号链接 chatgpt→chatgpt-proxy
+[[link]]
+path = ".local/bin/colloid-icon"
+[[link]]
+path = ".local/bin/deepseek-harness"
+[[link]]
+path = ".local/bin/desktop-tools"
+[[link]]
+path = ".local/bin/empty-workspace-widgets.py"
+[[link]]
+path = ".local/bin/kando-niri"
+[[link]]
+path = ".local/bin/niri-confirm-power"
+[[link]]
+path = ".local/bin/niri-help"
+[[link]]
+path = ".local/bin/niri-launcher"
+[[link]]
+path = ".local/bin/niri-lock"
+[[link]]
+path = ".local/bin/niri-power-menu"
+[[link]]
+path = ".local/bin/niri-tools"
+[[link]]
+path = ".local/bin/qq"
+[[link]]
+path = ".local/bin/wechat"
+
+[services]   # systemctl --user
+# deploy 后 enable --now(由 systemctl 生成 .wants)
+enable_now = [
+  "empty-workspace-widgets.service",
+  "sshx-agent.service",
+  "honor-sleep-test-guard.service",
+]
+# 只 daemon-reload,不 enable(前者由 niri spawn-at-startup 拉起)
+daemon_reload_only = ["noctalia.service", "deepseek-harness.service"]
+
+[packages]   # 官方 extra 仓库(已逐一核实已安装且在 sync 库)
+pacman = [
+  "niri","noctalia","kitty","zsh","neovim","git","fzf","eza","wl-clipboard",
+  "zsh-autosuggestions","zsh-syntax-highlighting","fastfetch","fuzzel","btop",
+  "yazi","mako","xsettingsd","fcitx5","fcitx5-rime","swaylock","yad","imagemagick","github-cli",
+]
+
+[shell.oh-my-zsh]
+repo = "https://github.com/ohmyzsh/ohmyzsh.git"
+commit = "17a2b4c"                    # 本机当前 HEAD,已核实
+[shell.oh-my-zsh.themes.spaceship-prompt]
+repo = "https://github.com/spaceship-prompt/spaceship-prompt"
+commit = "0676854"                    # v4.22.6,本机当前,已核实
+
+[external]  # 本机手工下载物,不部署、不入库,仅文档化(docs/architecture.md 有安装说明)
+binaries = [
+  "omp(289M agent CLI)",
+  "sshx(11M)",
+  "tree-sitter(11M)",
+  "kando(~/.local/share/kando)",
+  "zed-i18n(~/.local/opt/zed-i18n)",
+  "autojump(git clone wting/autojump + install.py → ~/.autojump)",
+  "HydrangeaNight-cursors(~/.local/share/icons,16M,含 ~/.icons/default/index.theme 继承项)",
+]

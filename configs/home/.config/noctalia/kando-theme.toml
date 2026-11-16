@@ -1,0 +1,4 @@
+[theme.templates.user.kando-morandi]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/kando-morandi.json"
+output_path = "$XDG_CONFIG_HOME/kando/menu-themes/morandi/theme.json"
+post_hook = "/home/imicola/.local/bin/desktop-tools kando-theme-refresh"

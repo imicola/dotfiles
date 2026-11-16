@@ -1,0 +1,12 @@
+[Unit]
+Description=sshx encrypted device discovery agent
+
+[Service]
+ExecStart=%h/.local/bin/sshx agent
+NoNewPrivileges=yes
+UMask=0077
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

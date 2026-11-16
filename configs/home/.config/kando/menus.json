@@ -1,0 +1,420 @@
+{
+  "version": "3.0.1",
+  "menus": [
+    {
+      "root": {
+        "type": "root",
+        "name": "桌面工具",
+        "icon": "apps",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "name": "搜索应用",
+            "icon": "search",
+            "iconTheme": "material-symbols-rounded",
+            "type": "button",
+            "selectWorkflow": {
+              "actions": [
+                {
+                  "type": "close-menu"
+                },
+                {
+                  "type": "execute-command",
+                  "command": "noctalia msg panel-open launcher",
+                  "detached": true,
+                  "isolated": false
+                }
+              ],
+              "quickSelectKey": "a"
+            }
+          },
+          {
+            "name": "文件",
+            "icon": "folder",
+            "iconTheme": "material-symbols-rounded",
+            "type": "button",
+            "selectWorkflow": {
+              "actions": [
+                {
+                  "type": "close-menu"
+                },
+                {
+                  "type": "execute-command",
+                  "command": "dolphin",
+                  "detached": true,
+                  "isolated": false
+                }
+              ],
+              "quickSelectKey": "f"
+            }
+          },
+          {
+            "name": "浏览器",
+            "icon": "language",
+            "iconTheme": "material-symbols-rounded",
+            "type": "button",
+            "selectWorkflow": {
+              "actions": [
+                {
+                  "type": "close-menu"
+                },
+                {
+                  "type": "execute-command",
+                  "command": "firefox",
+                  "detached": true,
+                  "isolated": false
+                }
+              ],
+              "quickSelectKey": "b"
+            }
+          },
+          {
+            "name": "终端",
+            "icon": "terminal",
+            "iconTheme": "material-symbols-rounded",
+            "type": "button",
+            "selectWorkflow": {
+              "actions": [
+                {
+                  "type": "close-menu"
+                },
+                {
+                  "type": "execute-command",
+                  "command": "kitty",
+                  "detached": true,
+                  "isolated": false
+                }
+              ],
+              "quickSelectKey": "t"
+            }
+          },
+          {
+            "name": "剪贴板",
+            "icon": "content_paste",
+            "iconTheme": "material-symbols-rounded",
+            "type": "button",
+            "selectWorkflow": {
+              "actions": [
+                {
+                  "type": "close-menu"
+                },
+                {
+                  "type": "execute-command",
+                  "command": "noctalia msg panel-open clipboard",
+                  "detached": true,
+                  "isolated": false
+                }
+              ],
+              "quickSelectKey": "v"
+            }
+          },
+          {
+            "name": "截图",
+            "icon": "screenshot_region",
+            "iconTheme": "material-symbols-rounded",
+            "type": "submenu",
+            "children": [
+              {
+                "name": "框选截图",
+                "icon": "crop_free",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "delay",
+                      "duration": 0.22
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action screenshot",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "整屏截图",
+                "icon": "screenshot_monitor",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "delay",
+                      "duration": 0.22
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action screenshot-screen",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "当前窗口",
+                "icon": "select_window",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "delay",
+                      "duration": 0.22
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action screenshot-window",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "窗口与工作区",
+            "icon": "space_dashboard",
+            "iconTheme": "material-symbols-rounded",
+            "type": "submenu",
+            "children": [
+              {
+                "name": "窗口总览",
+                "icon": "view_quilt",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action toggle-overview",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "上一个工作区",
+                "icon": "keyboard_arrow_up",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action focus-workspace-up",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "下一个工作区",
+                "icon": "keyboard_arrow_down",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "niri msg action focus-workspace-down",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "桌面设置",
+            "icon": "tune",
+            "iconTheme": "material-symbols-rounded",
+            "type": "submenu",
+            "children": [
+              {
+                "name": "控制中心",
+                "icon": "settings",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "noctalia msg panel-open control-center",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "选择壁纸",
+                "icon": "wallpaper",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "noctalia msg panel-open wallpaper",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "壁纸取色",
+                "icon": "palette",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "/home/imicola/.local/bin/desktop-tools theme-wallpaper",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "紫阳花夜色",
+                "icon": "dark_mode",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "/home/imicola/.local/bin/desktop-tools theme-original",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "系统监控",
+                "icon": "monitoring",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "/home/imicola/.local/bin/desktop-tools monitor",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "重载桌面",
+                "icon": "refresh",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "/home/imicola/.local/bin/desktop-tools reload",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "重载输入法",
+                "icon": "keyboard",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "execute-command",
+                      "command": "/home/imicola/.local/bin/desktop-tools input-reload",
+                      "detached": true,
+                      "isolated": false
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "编辑环形菜单",
+                "icon": "edit",
+                "iconTheme": "material-symbols-rounded",
+                "type": "button",
+                "selectWorkflow": {
+                  "actions": [
+                    {
+                      "type": "close-menu"
+                    },
+                    {
+                      "type": "open-settings"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "shortcut": "",
+      "shortcutID": "desktop-menu",
+      "centered": false,
+      "anchored": true,
+      "hoverMode": false
+    }
+  ],
+  "collections": []
+}

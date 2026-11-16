@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Desktop shortcuts inspired by the quick actions in LanRhyme/dotfiles.
+set -euo pipefail
+case "${1:-check}" in
+    check)
+        niri validate
+        noctalia config validate
+        noctalia msg color-scheme-get
+        ;;
+    reload)
+        niri validate
+        noctalia config validate
+        niri msg action load-config-file
+        noctalia msg config-reload
+        ;;
+    theme-refresh) exec noctalia msg templates-apply ;;
+    kando-theme-refresh)
+        config_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
+        kando_dir="$config_dir/kando"
+        app="${XDG_DATA_HOME:-$HOME/.local/share}/kando/kando"
+        lock="$(readlink "$kando_dir/SingletonLock")" || exit 0
+        pid="${lock##*-}"
+        # Stale Electron sockets can survive a crash. Check the owning executable too.
+        if [[ "$pid" =~ ^[0-9]+$ && -S "$kando_dir/SingletonSocket" && "/proc/$pid/exe" -ef "$app" ]]; then
+            exec timeout --kill-after=1s 3s "${BASH_SOURCE[0]%/*}/kando-niri" --reload-menu-theme
+        fi
+        ;;
+    theme-wallpaper) exec noctalia msg color-scheme-set wallpaper soft ;;
+    theme-original) exec noctalia msg color-scheme-set custom HydrangeaNight ;;
+    input-reload) exec fcitx5-remote -r ;;
+    monitor) exec kitty -e btop ;;
+    *)
+        printf '%s\n' '用法：desktop-tools {check|reload|theme-refresh|theme-wallpaper|theme-original|input-reload|monitor}' >&2
+        exit 2
+        ;;
+esac

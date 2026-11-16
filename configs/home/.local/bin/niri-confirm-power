@@ -1,0 +1,9 @@
+#!/bin/sh
+case "${1:-}" in
+    shutdown) action=poweroff; label=关机 ;;
+    reboot) action=reboot; label=重启 ;;
+    *) exit 2 ;;
+esac
+answer=$(printf '取消\n确认%s\n' "$label" | fuzzel --dmenu --prompt='保存工作后再继续 ❯ ' --lines=2) || exit 0
+[ "$answer" = "确认$label" ] || exit 0
+exec systemctl "$action"

@@ -1,0 +1,114 @@
+# Clavis-inspired layout, implemented with native Noctalia components.
+# Reference: https://github.com/StatIndet/quickshell
+# Remove this file to restore the previous Noctalia layout.
+
+[bar.default]
+background_opacity = 0.0
+compositor_blur = false
+border_width = 0
+shadow = false
+padding = 0
+widget_spacing = 10
+start = ["group:hydrangea-navigation"]
+center = ["group:hydrangea-time"]
+end = ["media", "group:hydrangea-status", "group:hydrangea-controls"]
+
+[[bar.default.capsule_group]]
+id = "hydrangea-navigation"
+members = ["launcher", "workspaces", "active_window"]
+fill = "surface_container"
+opacity = 0.92
+border = "outline_variant"
+border_width = 1
+radius = 16
+padding = 10
+widget_spacing = 8
+
+[[bar.default.capsule_group]]
+id = "hydrangea-status"
+members = ["privacy", "tray", "notifications", "clipboard"]
+fill = "surface_container"
+opacity = 0.92
+border = "outline_variant"
+border_width = 1
+radius = 16
+padding = 10
+widget_spacing = 8
+
+[[bar.default.capsule_group]]
+id = "hydrangea-controls"
+members = ["network", "volume", "battery", "control-center", "safe-session"]
+fill = "surface_container"
+opacity = 0.92
+border = "outline_variant"
+border_width = 1
+radius = 16
+padding = 10
+widget_spacing = 8
+
+[widget.active_window]
+max_length = 110
+
+[widget.launcher.actions]
+right = "exec /home/imicola/.local/bin/niri-tools"
+
+[widget.media]
+capsule = true
+capsule_fill = "surface_container"
+capsule_opacity = 0.92
+capsule_border = "outline_variant"
+capsule_padding = 10
+max_length = 90
+
+[dock]
+enabled = true
+position = "bottom"
+icon_size = 42
+background_opacity = 0.88
+compositor_blur = true
+border = "outline_variant"
+border_width = 1
+radius = 18
+radius_top_left = 18
+radius_top_right = 18
+radius_bottom_left = 18
+radius_bottom_right = 18
+concave_edge_corners = false
+margin_edge = 10
+main_axis_padding = 14
+cross_axis_padding = 8
+item_spacing = 6
+smart_auto_hide = true
+auto_hide = false
+reserve_space = false
+layer = "top"
+magnification = true
+magnification_scale = 1.28
+inactive_scale = 0.92
+inactive_opacity = 0.92
+show_dots = true
+show_running = true
+show_instance_count = true
+launcher_position = "start"
+launcher_icon = "grid-dots"
+pinned = ["firefox", "org.kde.dolphin", "kitty", "dev.zed-i18n.Zed", "qq", "wechat", "folia-major"]
+
+[shell.window_switcher]
+current_workspace_only = false
+show_all_outputs = true
+show_app_icon = true
+show_caption = true
+show_count = true
+mru = true
+style = "carousel"
+
+[[bar.default.capsule_group]]
+id = "hydrangea-time"
+members = ["clock", "weather"]
+fill = "surface_container"
+opacity = 0.92
+border = "outline_variant"
+border_width = 1
+radius = 16
+padding = 12
+widget_spacing = 8

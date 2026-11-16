@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+. "$HOME/.config/honor/proxy.sh"
+proxy_on
+export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export XCURSOR_THEME=HydrangeaNight-cursors
+export XCURSOR_SIZE=24
+exec /usr/bin/chatgpt --ozone-platform=wayland --proxy-server=http://127.0.0.1:7897 "$@"

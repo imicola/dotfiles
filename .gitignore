@@ -1,0 +1,4 @@
+*.bak-*
+*.zwc
+configs/home/.config/noctalia/*.bak-*
+__pycache__/

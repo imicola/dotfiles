@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Chinese desktop tools, using Noctalia's existing panels and providers."""
+import subprocess
+import sys
+import time
+
+NOCTALIA = "/usr/bin/noctalia"
+TOOLS = [
+    ("剪贴板历史", "搜索复制过的文字和图片 · Super+Shift+V", [NOCTALIA, "msg", "panel-open", "clipboard"]),
+    ("计算器与单位换算", "输入 12*8 或 10 cm to in · 回车复制结果", [NOCTALIA, "msg", "panel-open", "launcher", "/calc "]),
+    ("表情符号", "按名称搜索并复制 · Super+句号", [NOCTALIA, "msg", "panel-open", "launcher", "/emo "]),
+    ("查找已打开的窗口", "搜索窗口标题，跨工作区跳转", [NOCTALIA, "msg", "panel-open", "launcher", "/win "]),
+    ("媒体与播放控制", "封面、播放器和播放进度 · Super+M", [NOCTALIA, "msg", "panel-open", "control-center", "media"]),
+    ("日历", "查看本月日期", [NOCTALIA, "msg", "panel-open", "control-center", "calendar"]),
+    ("哈尔滨天气", "天气详情和预报", [NOCTALIA, "msg", "panel-open", "control-center", "weather"]),
+    ("系统状态", "CPU、内存和系统信息", [NOCTALIA, "msg", "panel-open", "control-center", "system"]),
+    ("壁纸选择", "浏览现有壁纸 · Super+W", [NOCTALIA, "msg", "panel-open", "wallpaper"]),
+    ("显示或隐藏 Dock", "切换底部应用栏 · Super+Ctrl+D", [NOCTALIA, "msg", "dock-toggle"]),
+    ("中文快捷键说明", "完整快捷键速查 · Super+Shift+/", ["/home/imicola/.local/bin/niri-help"]),
+]
+
+
+def main():
+    choices = {title + "\t" + detail: argv for title, detail, argv in TOOLS}
+    if sys.argv[1:] == ["--list"]:
+        print("\n".join(choices))
+        return 0
+    if sys.argv[1:]:
+        print("Usage: niri-tools [--list]", file=sys.stderr)
+        return 2
+    result = subprocess.run(
+        [NOCTALIA, "dmenu", "--prompt", "快捷工具 · 输入关键词搜索"],
+        input="\n".join(choices) + "\n", text=True, capture_output=True,
+    )
+    if result.returncode:
+        if result.stderr.strip():
+            print(result.stderr.strip(), file=sys.stderr)
+        return result.returncode
+    # dmenu permits free text; only exact entries can dispatch an action.
+    command = choices.get(result.stdout.rstrip("\r\n"))
+    if command is None:
+        return 0
+    # Let the picker release keyboard focus before opening another panel.
+    time.sleep(0.15)
+    return subprocess.run(command, check=False).returncode
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,12 @@
+[Unit]
+Description=Hydrangea Night desktop shell (Noctalia)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/noctalia
+Restart=on-failure
+RestartSec=3
+Environment=LANG=zh_CN.UTF-8
+Environment=LC_TIME=zh_CN.UTF-8

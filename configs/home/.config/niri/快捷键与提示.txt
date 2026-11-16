@@ -1,0 +1,113 @@
+Niri 快捷键与使用提示
+Super = 键盘上的 Windows 徽标键；“+”表示同时按住。
+关闭此面板：按 Esc（现在是物理 Caps Lock），或点击下方“关闭”。
+
+▌打开应用与会话
+Super + T / Enter        打开 Kitty 终端（Ctrl + Alt + T 也可）
+Alt + 空格                应用搜索；输入名字后按 Enter 打开
+Super + E                文件管理器
+Super + B                Firefox 日常浏览器
+Super + Shift + B        Edge 备用浏览器
+Super + X                会话菜单：锁屏、注销、重启、关机
+Super + Ctrl + L         锁屏，使用登录密码解锁
+Super + Q                关闭当前窗口，注意保存内容
+Super + Shift + E        退出 Niri，回到登录界面（有确认）
+
+▌统一规则：Super 切焦点，添加 Shift 移动窗口
+▌在窗口间移动
+Super + ← / →            聚焦左／右窗口列
+Super + ↑ / ↓            聚焦同一列内的上／下窗口
+Super + H / J / K / L    对应左／下／上／右
+Super + Shift + ← / →    将当前列左移／右移
+Super + Shift + ↑ / ↓    将窗口在同一列中上移／下移
+Super + Shift + H/J/K/L  同上，使用字母方向键
+Super + Ctrl + ← / →     当前窗口并入相邻列／从列中拆出
+Super + 空格             总览所有窗口和工作区
+
+▌工作区（无需 PageUp / PageDown）
+Super + Alt + ↑ / ↓             切换到上／下工作区
+Super + Alt + Shift + ↑ / ↓     把当前窗口移到上／下工作区
+Super + 1 … 9                   跳到指定序号的工作区
+Super + Shift + 1 … 9           把当前窗口移到指定序号的工作区
+提示：工作区默认动态增减；临时空工作区消失时，序号可能变化。
+
+▌窗口尺寸与布局
+Super + - / =            每次缩窄／加宽窗口列 5%
+Super + Shift + - / =    每次降低／增加窗口高度 5%
+Super + R                轮换预设列宽：50% → 约 67% → 100%
+Super + F                切换整列最大化
+Super + Shift + F        切换当前窗口全屏
+Super + V                在浮动和自动平铺之间切换
+提示：平铺左右移动以整列为单位，上下调整列内顺序；要跨列整理当前窗口，用 Super+Ctrl+左右。
+提示：平铺窗口通常占满可用高度；同列放多个窗口时，高度调整更明显。
+提示：Super + R 的三个档位只是预设；加减键可以微调。
+提示：应用可单独设置默认宽度、工作区；具体坐标适用于浮动窗口。
+
+▌截图、声音与亮度
+Print                    框选截图
+Ctrl + Print             全屏截图
+Alt + Print              当前窗口截图
+截图目录：~/Pictures/Screenshots/
+音量／静音／麦克风／亮度功能键可直接使用，媒体键控制播放。
+顶部状态栏可打开网络、蓝牙、声音和会话菜单。
+
+▌中文输入与键位交换
+Ctrl + 空格              启用／停用 Fcitx5 输入法
+单按左／右 Shift         雾凇方案内切换中／英文
+提示：Shift 与其他键组合时仍正常使用，不会因组合键切换中英文。
+物理 Caps Lock           现在是 Esc
+物理 Esc                 现在是 Caps Lock（大小写锁定）
+提示：按物理 Caps Lock 可取消菜单、退出 Vim 插入模式等。
+提示：输入法已启动不等于当前是中文；先检查 Ctrl+空格，再检查 Shift。
+
+▌当前设置与排障
+屏幕：3120×2080，120Hz，175% 缩放。
+终端：Kitty + Zsh；proxy_on / proxy_off 开启／关闭当前终端代理。
+终端复制／粘贴：Ctrl + Shift + C / V；Ctrl + C 用于中断命令。
+Super + Esc              切换是否允许应用独占桌面快捷键
+                         交换键位后是 Super + 物理 Caps Lock。
+Super + Shift + /        打开这份中文速查表（即 Super + ?）
+Super + Ctrl + /         打开 Niri 自带面板，作为备用。
+
+返回 Plasma：保存工作 → Super+Shift+E → 登录界面改选 Plasma。
+睡眠与合盖仍待独立验收，当前保留睡眠保护。
+
+
+▌日常软件与开发命令
+Alt + 空格 搜索：微信、QQ、Zed、Typora、Obsidian、Folia、DeepSeek、Codex。
+Super + B 打开 Firefox；Super + Shift + B 打开 Edge。
+终端输入 chatgpt 打开桌面应用；codex 使用独立命令行 Agent。
+zed . 打开当前项目；go / node / npm 可直接使用。
+Docker 当前使用 sudo docker；docker compose 同样可用。
+已安装 kubectl 和 kind，尚未创建 Kubernetes 集群。
+DeepSeek Harness 是本机 Web 界面；关闭浏览器标签不会停止服务。
+停止它：systemctl --user stop deepseek-harness.service
+
+
+【紫阳花夜色桌面】
+Alt+Space：统一应用启动器（保留原键位）
+Super+C：控制中心（网络、蓝牙、声音、天气、系统）
+Super+N：通知历史
+Super+W：壁纸选择
+Super+Shift+D：勿扰模式
+Super+Ctrl+L：统一锁屏（保留原键位）
+Super+X：原会话菜单，保留重启/关机确认
+顶栏时钟：左键日历，右键哈尔滨天气；音量滚轮每次 5%，右键静音。
+顶栏部件中键：打开对应设置。天气每 30 分钟刷新。
+自动锁屏 10 分钟，熄屏 15 分钟；不会自动挂起。
+
+
+【Clavis 灵感整合 · 快捷工具与悬浮 Dock】
+Super+D：中文快捷工具菜单；输入关键词筛选，回车打开，Esc 取消。
+Super+Shift+V：剪贴板历史（文字与图片）。Super+V 仍切换浮动窗口。
+Super+Shift+C：计算器；例如 12*8、10 cm to in，回车复制结果。
+Super+句号：表情符号搜索，回车复制。
+Super+M：媒体面板（有支持 MPRIS 的播放器运行时显示内容）。
+Super+Tab：按最近使用顺序切换窗口，松开 Super 确认。
+Super+Ctrl+D：显示／隐藏 Dock（会记住选择）。
+顶栏头像：左键应用搜索，右键快捷工具；新增剪贴板图标可直接点开历史。
+底部 Dock：空工作区显示，有窗口时隐藏；鼠标到屏幕底边停留约 250ms 可唤出。
+Dock 图标：点击打开／聚焦，右键查看窗口操作；悬停放大，可拖动已固定应用排序。
+Alt+Space 保留应用搜索；输入 /calc、/emo、/win、/wall、/pan 可切换搜索工具。
+货币汇率不会自动联网更新；金额换算可能使用缓存汇率，需另行核对。
+

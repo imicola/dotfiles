@@ -1,0 +1,9 @@
+font=Noto Sans CJK SC 11
+background-color=#1e1e2ef2
+text-color=#cdd6f4
+border-color=#cba6f7
+border-size=2
+border-radius=10
+default-timeout=6000
+width=360
+margin=12

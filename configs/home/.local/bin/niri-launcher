@@ -1,0 +1,5 @@
+#!/bin/sh
+if command -v noctalia >/dev/null 2>&1 && noctalia msg panel-toggle launcher; then
+    exit 0
+fi
+exec fuzzel

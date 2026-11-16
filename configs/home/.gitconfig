@@ -1,0 +1,15 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	name = imicola
+	# 真实邮箱放 ~/.gitconfig-local(不入库);仓库保持无个人信息
+[include]
+	path = ~/.gitconfig-local
+[http]
+	proxy = http://127.0.0.1:7897
+[https]
+	proxy = http://127.0.0.1:7897

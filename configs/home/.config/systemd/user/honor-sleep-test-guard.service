@@ -1,0 +1,10 @@
+[Unit]
+Description=Temporarily block sleep until HONOR suspend testing is complete
+
+[Service]
+ExecStart=/usr/bin/systemd-inhibit --what=sleep --mode=block --who=HONOR-install --why=Sleep-not-yet-validated /usr/bin/sleep infinity
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

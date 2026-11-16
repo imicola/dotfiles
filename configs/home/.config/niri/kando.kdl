@@ -1,0 +1,16 @@
+// Kando opens beside the pointer and floats above the tiled layout.
+window-rule {
+    match title="^Kando Menu$"
+    open-floating true
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+    geometry-corner-radius 0
+    default-floating-position x=0 y=0
+}
+
+binds {
+    Mod+A hotkey-overlay-title="桌面工具环形菜单" {
+        spawn "/home/imicola/.local/bin/kando-niri" "--menu" "桌面工具"
+    }
+}

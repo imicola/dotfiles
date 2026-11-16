@@ -1,0 +1,20 @@
+{
+  "name": "Morandi",
+  "author": "Adapted from Simon Schneegans's Default theme",
+  "license": "CC0-1.0",
+  "themeVersion": "1.0",
+  "engineVersion": 1,
+  "maxMenuRadius": 160,
+  "centerTextWrapWidth": 95,
+  "drawChildrenBelow": true,
+  "drawSelectionWedges": true,
+  "colors": {
+    "background-color": "{{colors.surface.default.hex}}",
+    "text-color": "{{colors.on_surface.default.hex}}",
+    "border-color": "{{colors.outline_variant.default.hex}}",
+    "hover-color": "{{colors.primary_container.default.hex}}",
+    "wedge-highlight-color": "rgba(0, 0, 0, 0.10)",
+    "wedge-color": "rgba(0, 0, 0, 0.20)"
+  },
+  "layers": [{ "class": "quick-key", "content": "quick-select-key" }, { "class": "icon-layer", "content": "icon" }]
+}
