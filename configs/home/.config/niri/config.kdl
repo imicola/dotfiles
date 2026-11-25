@@ -25,7 +25,7 @@ environment {
  QT_QPA_PLATFORMTHEME "kde"
  XCURSOR_THEME "HydrangeaNight-cursors"
  XCURSOR_SIZE "24"
- BROWSER "microsoft-edge-stable"
+ BROWSER "firefox"
  XMODIFIERS "@im=fcitx"
  QT_IM_MODULE "fcitx"
  HTTP_PROXY "http://127.0.0.1:7897"
@@ -45,6 +45,7 @@ prefer-no-csd
 window-rule {
  geometry-corner-radius 11
  clip-to-geometry true
+ draw-border-with-background false
 }
 window-rule {
  match app-id=r#"^(org.pulseaudio.pavucontrol|blueman-manager|nm-connection-editor)$"#
@@ -124,8 +125,9 @@ binds {
  Mod+F hotkey-overlay-title="切换整列最大化" { maximize-column; }
  Mod+Shift+F hotkey-overlay-title="切换当前窗口全屏" { fullscreen-window; }
  Mod+V hotkey-overlay-title="切换浮动／平铺" { toggle-window-floating; }
+ Mod+Shift+O hotkey-overlay-title="切换当前窗口不透明／半透明" { toggle-window-rule-opacity; }
  Mod+Space hotkey-overlay-title="打开／关闭窗口总览" { toggle-overview; }
- Print hotkey-overlay-title="框选截图（保存并复制）" { screenshot; }
+ Mod+S hotkey-overlay-title="框选截图（保存并复制）" { screenshot; }
  Ctrl+Print hotkey-overlay-title="全屏截图" { screenshot-screen; }
  Alt+Print hotkey-overlay-title="当前窗口截图" { screenshot-window; }
  Mod+Escape hotkey-overlay-title="允许／禁止应用独占快捷键" { toggle-keyboard-shortcuts-inhibit; }
@@ -184,6 +186,20 @@ window-rule {
         blur true
         xray true
     }
+}
+
+// 全局窗口半透明：聚焦窗口 0.90，非聚焦窗口 0.85（可按 Super+Shift+O 临时切回完全不透明）。
+window-rule {
+    opacity 0.90
+}
+window-rule {
+    match is-active=false
+    opacity 0.85
+}
+// 排除浏览器、视频播放器、自带原生背景透明的 Kitty 终端和 Noctalia 设置窗口，避免看视频/图片变透或重复叠加透明度。
+window-rule {
+    match app-id=r#"^(firefox|microsoft-edge|microsoft-edge-stable|google-chrome|chromium|mpv|vlc|kitty|dev\.noctalia\.Noctalia)$"#
+    opacity 1.0
 }
 
 // Noctalia 自己请求正确形状的 blur region。

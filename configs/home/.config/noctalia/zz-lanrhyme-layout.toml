@@ -9,7 +9,7 @@ padding = 12
 widget_spacing = 11
 scale = 1.25
 font_scale = 0.90
-background_opacity = 0.90
+background_opacity = 0.85
 compositor_blur = true
 border_width = 0
 shadow = false
@@ -67,7 +67,7 @@ width = 560
 
 [dock]
 icon_size = 38
-background_opacity = 0.84
+background_opacity = 0.85
 margin_edge = 12
 main_axis_padding = 12
 cross_axis_padding = 7

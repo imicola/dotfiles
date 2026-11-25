@@ -69,7 +69,6 @@ bootstrap.sh 不会安装以下内容,换机时按说明手动恢复:
 - **sshx**(11M)— 二进制放 `~/.local/bin/`,服务文件已入库(sshx-agent.service);
 - **tree-sitter**(11M)— 二进制放 `~/.local/bin/`;
 - **kando** — 应用装到 `~/.local/share/kando`,配置 config.json/menus.json 已入库,menu-themes 为生成物;
-- **zed-i18n** — `~/.local/opt/zed-i18n/`;
 - **autojump** — `git clone https://github.com/wting/autojump && ./install.py`(装入 `~/.autojump`;bootstrap.sh 已自动做);
 - **HydrangeaNight-cursors** — 16M 光标主题放 `~/.local/share/icons/HydrangeaNight-cursors`,并建 `~/.icons/default/index.theme`(内容 `Inherits=HydrangeaNight-cursors`);niri/GTK/xsettingsd 配置均引用该主题名。
 

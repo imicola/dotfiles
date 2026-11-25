@@ -13,3 +13,5 @@
 	proxy = http://127.0.0.1:7897
 [https]
 	proxy = http://127.0.0.1:7897
+[url "https://github.com/"]
+	insteadOf = git@github.com:

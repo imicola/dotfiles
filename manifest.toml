@@ -129,6 +129,7 @@ pacman = [
   "niri","noctalia","kitty","zsh","neovim","git","fzf","eza","wl-clipboard",
   "zsh-autosuggestions","zsh-syntax-highlighting","fastfetch","fuzzel","btop",
   "yazi","mako","xsettingsd","fcitx5","fcitx5-rime","swaylock","yad","imagemagick","github-cli",
+  "zed","noctalia-greeter","greetd",
 ]
 
 [shell.oh-my-zsh]
@@ -144,7 +145,6 @@ binaries = [
   "sshx(11M)",
   "tree-sitter(11M)",
   "kando(~/.local/share/kando)",
-  "zed-i18n(~/.local/opt/zed-i18n)",
   "autojump(git clone wting/autojump + install.py → ~/.autojump)",
   "HydrangeaNight-cursors(~/.local/share/icons,16M,含 ~/.icons/default/index.theme 继承项)",
 ]

@@ -23,3 +23,7 @@ source <(fzf --zsh)
 [[ -o interactive && -t 1 && -z "$HONOR_NO_FETCH" ]] && fastfetch
 [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/imicola/.local/bin:$PATH"

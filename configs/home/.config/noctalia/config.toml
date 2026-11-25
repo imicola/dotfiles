@@ -18,12 +18,15 @@ corner_radius_scale = 0.9
 date_format = "%Y年%m月%d日 %A"
 time_format = "{:%H:%M}"
 clipboard_enabled = true
-settings_window_translucent = false
+settings_window_translucent = true
 circular_avatar = false
 
 [shell.animation]
 enabled = true
 speed = 1.5
+
+[shell.greeter_sync]
+auto_sync = true
 
 [shell.shadow]
 direction = "down"
@@ -46,7 +49,7 @@ width = 700
 search_position = "top"
 default_view = "pinned"
 app_grid = false
-pinned = ["microsoft-edge", "org.kde.dolphin", "kitty", "dev.zed-i18n.Zed", "qq", "wechat"]
+pinned = ["microsoft-edge", "org.kde.dolphin", "kitty", "dev.zed.Zed", "qq", "wechat"]
 
 [bar]
 order = ["default"]
@@ -59,7 +62,8 @@ margin_ends = 12
 margin_opposite_edge = 8
 padding = 16
 widget_spacing = 8
-background_opacity = 0.86
+background_opacity = 0.85
+capsule_opacity = 0.85
 compositor_blur = true
 radius = 14
 radius_top_left = 14
@@ -195,7 +199,7 @@ tint_intensity = 0.35
 
 [notification]
 enable_daemon = true
-background_opacity = 0.95
+background_opacity = 0.85
 position = "top_right"
 offset_x = 14
 offset_y = 68
@@ -205,7 +209,7 @@ max_visible = 3
 [osd]
 position = "top_center"
 offset_y = 68
-background_opacity = 0.95
+background_opacity = 0.85
 hide_delay_ms = 1200
 
 [lockscreen]
@@ -294,7 +298,7 @@ placement_height = 1188
 [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
 layout = "compact"
 background_color = "surface_container"
-background_opacity = 0.86
+background_opacity = 0.85
 background_radius = 20
 input_opacity = 1.0
 input_radius = 10
@@ -330,6 +334,7 @@ builtin_ids = ["kcolorscheme"]
 drawer = true
 drawer_columns = 4
 drawer_item_size = 28
+drawer_background_opacity = 0.85
 
 [widget.control-center.actions]
 right = "panel-toggle clipboard"
@@ -357,7 +362,7 @@ placement_height = 1188
 [desktop_widgets.widget.desk-clock.settings]
 background = true
 background_color = "surface"
-background_opacity = 0.84
+background_opacity = 0.85
 background_radius = 18
 background_padding = 14
 font_family = "Noto Sans CJK SC"
@@ -380,7 +385,7 @@ placement_height = 1188
 [desktop_widgets.widget.desk-weather.settings]
 background = true
 background_color = "surface"
-background_opacity = 0.84
+background_opacity = 0.85
 background_radius = 18
 background_padding = 14
 font_family = "Noto Sans CJK SC"
@@ -401,7 +406,7 @@ placement_height = 1188
 [desktop_widgets.widget.desk-calendar.settings]
 background = true
 background_color = "surface"
-background_opacity = 0.84
+background_opacity = 0.85
 background_radius = 18
 background_padding = 14
 font_family = "Noto Sans CJK SC"
@@ -421,7 +426,7 @@ placement_height = 1188
 [desktop_widgets.widget.desk-cpu.settings]
 background = true
 background_color = "surface"
-background_opacity = 0.84
+background_opacity = 0.85
 background_radius = 18
 background_padding = 14
 font_family = "Noto Sans CJK SC"
@@ -446,7 +451,7 @@ placement_height = 1188
 [desktop_widgets.widget.desk-memory.settings]
 background = true
 background_color = "surface"
-background_opacity = 0.84
+background_opacity = 0.85
 background_radius = 18
 background_padding = 14
 font_family = "Noto Sans CJK SC"
